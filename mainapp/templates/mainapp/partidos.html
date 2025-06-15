@@ -1,0 +1,26 @@
+{% extends 'mainapp/base.html' %}
+
+{% block title %}Partidos - Mundial de Clubes 2025{% endblock %}
+
+{% block section_title %}
+<h1>Partidos</h1>
+{% endblock %}
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Agregar Partido</button>
+</form>
+
+<h2>Partidos existentes</h2>
+<ul>
+  {% for partido in partidos %}
+    <li>
+      {{ partido.equipo_local.nombre_equipo }}  {{ partido.goles_local }} : {{ partido.goles_visita }}  {{ partido.equipo_visita.nombre_equipo }}
+    </li>
+  {% empty %}
+    <li>No hay partidos cargados aún.</li>
+  {% endfor %}
+</ul>
+{% endblock %}

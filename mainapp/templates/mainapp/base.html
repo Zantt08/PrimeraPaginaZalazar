@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Mundial de Clubes 2025{% endblock %}</title>
+    {% load static %}
+</head>
+<body>
+    <header>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+                <a href="{% url 'inicio' %}" style="text-decoration: none; color: black;">
+                    <h1 style="margin: 0;">Mundial de Clubes</h1>
+                </a>
+            </div>
+            <nav>
+                <ul style="list-style: none; display: flex; gap: 1rem; margin: 0;">
+                    <li><a href="{% url 'equipos' %}">Equipos</a></li>
+                    <li><a href="{% url 'jugadores' %}">Jugadores</a></li>
+                    <li><a href="{% url 'partidos' %}">Partidos</a></li>
+                </ul>
+            </nav>
+            <form action="#" method="get">
+                <input type="text" name="q" placeholder="Buscar equipo...">
+                <button type="submit">Buscar</button>
+            </form>
+        </div>
+    </header>
+    {% block section_title %}
+    {% endblock %}
+
+    {% block content %}
+    {% endblock %}
+
+</body>
+</html>

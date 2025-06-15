@@ -1,0 +1,24 @@
+{% extends 'mainapp/base.html' %}
+
+{% block title %}Jugadores - Mundial de Clubes 2025{% endblock %}
+
+{% block section_title %}
+<h1>Jugadores</h1>
+{% endblock %}
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Agregar Jugador</button>
+</form>
+
+<h2>Jugadores existentes</h2>
+<ul>
+  {% for jugador in jugadores %}
+    <li>{{ jugador.nombre }} - {{ jugador.get_posicion_display }} - Equipo: {{ jugador.equipo.nombre_equipo }}</li>
+  {% empty %}
+    <li>No hay jugadores cargados aún.</li>
+  {% endfor %}
+</ul>
+{% endblock %}

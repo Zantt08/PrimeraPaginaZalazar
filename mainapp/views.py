@@ -54,3 +54,15 @@ def partidos(request):
         'form': form,
         'partidos': partidos,
     })
+
+def buscar_equipos(request):
+    query = request.GET.get('q')
+    resultados = []
+
+    if query:
+        resultados = Equipo.objects.filter(nombre_equipo__icontains=query)
+
+    return render(request, 'mainapp/buscar_equipos.html', {
+        'resultados': resultados,
+        'query': query,
+    })

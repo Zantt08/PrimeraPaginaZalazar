@@ -1,0 +1,35 @@
+{% extends 'mainapp/base.html' %}
+
+{% block title %}Equipos - Mundial de Clubes 2025{% endblock %}
+
+{% block section_title %}
+Búsqueda de Equipos
+{% endblock %}
+
+{% block content %}
+<form method="get">
+    <input type="text" name="q" placeholder="Nombre del equipo..." value="{{ query }}">
+    <button type="submit">Buscar</button>
+</form>
+{% if query %}
+    <h2>Resultados para "{{ query }}"</h2>
+    {% if resultados %}
+        <ul>
+        {% for equipo in resultados %}
+            <li>
+                <strong>{{ equipo.nombre_equipo }}</strong> ({{ equipo.pais_equipo }})
+                <ul>
+                    {% for jugador in equipo.jugador_set.all %}
+                        <li>{{ jugador.nombre }} - {{ jugador.get_posicion_display }}</li>
+                    {% empty %}
+                        <li>No hay jugadores registrados.</li>
+                    {% endfor %}
+                </ul>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No se encontraron equipos.</p>
+    {% endif %}
+{% endif %}
+{% endblock %}
